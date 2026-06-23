@@ -84,5 +84,5 @@ Distributed under the Apache 2.0 License. See `LICENSE` for more information.
 
 ## 📧 Contact
 
-Project Link: [https://github.com/YOUR_USERNAME/Campus360](https://github.com/nenrikaraju123/Campus360)
+Project Link: [https://github.com/nenrikaraju123/Campus360](https://github.com/nenrikaraju123/Campus360)
 Email: rajunerenika@gmail.com
