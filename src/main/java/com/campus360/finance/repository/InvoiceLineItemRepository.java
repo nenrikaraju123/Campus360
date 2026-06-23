@@ -1,0 +1,12 @@
+package com.campus360.finance.repository;
+
+import com.campus360.finance.domain.InvoiceLineItem;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Repository
+public interface InvoiceLineItemRepository extends JpaRepository<InvoiceLineItem, Long> {
+    List<InvoiceLineItem> findByTenantIdAndInvoice_Id(Long tenantId, Long invoiceId);
+}

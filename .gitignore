@@ -1,0 +1,23 @@
+# Build
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# Secrets & local config
+.env
+*.env
+application-local.properties
+application-local.yml
+src/main/resources/application-secret*.yml
+
+# Logs / OS
+*.log
+.DS_Store
+
+# Legacy reference (kept locally, not part of the build)
+/legacy/
+/$[{]project.video/

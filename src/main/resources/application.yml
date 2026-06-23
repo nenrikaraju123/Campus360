@@ -1,0 +1,73 @@
+spring:
+  application:
+    name: campus360-backend
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev}
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/campus360}
+    username: ${DB_USERNAME:campus360}
+    password: ${DB_PASSWORD:campus360}
+    hikari:
+      maximum-pool-size: 10
+      connection-timeout: 30000
+  jpa:
+    hibernate:
+      ddl-auto: validate          # schema owned by Flyway, never auto-created
+    open-in-view: false
+    properties:
+      hibernate.jdbc.time_zone: UTC
+      hibernate.format_sql: false
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+  mail:
+    host: ${MAIL_HOST:localhost}
+    port: ${MAIL_PORT:1025}
+    username: ${MAIL_USERNAME:}
+    password: ${MAIL_PASSWORD:}
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 100MB
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY:not-set}
+      chat:
+        options:
+          model: ${OPENAI_MODEL:gpt-4o-mini}
+          temperature: 0.4
+
+server:
+  port: ${SERVER_PORT:8080}
+  error:
+    include-message: always
+    include-binding-errors: always
+
+campus360:
+  jwt:
+    secret: ${JWT_SECRET:dev-only-insecure-secret-change-me-0123456789-0123456789-abcd}
+    access-token-minutes: ${JWT_ACCESS_MINUTES:15}
+    refresh-token-days: ${JWT_REFRESH_DAYS:7}
+  portal-url: ${PORTAL_URL:http://localhost:5173}
+  ai:
+    # When false (default), Campus360 Intelligence uses a deterministic offline
+    # fallback so the app runs without an OpenAI key. Set true + OPENAI_API_KEY
+    # to route through OpenAI via Spring AI.
+    enabled: ${AI_ENABLED:false}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: when_authorized
+  health:
+    mail:
+      enabled: false   # mail is best-effort; don't fail readiness when SMTP is absent
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    operationsSorter: method
